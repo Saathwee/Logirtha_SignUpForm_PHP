@@ -38,10 +38,10 @@ This is a simple Signup Form web application that allows users to register with 
    - Run this SQL to create the table:
      ```sql
      CREATE TABLE users (
-       id INT AUTO_INCREMENT PRIMARY KEY,
+       id INT(11) PRIMARY KEY,
        name VARCHAR(100) NOT NULL,
        email VARCHAR(100) NOT NULL UNIQUE,
-       mobile VARCHAR(10) NOT NULL,
+       mobile int10) NOT NULL,
        password VARCHAR(255) NOT NULL,
        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
      );
