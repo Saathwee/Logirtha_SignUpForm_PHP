@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Signup Form</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <h2>Signup Form</h2>
+  <form id="signupForm" action="signup.php" method="POST">
+    <label>Name:</label><br>
+    <input type="text" name="name" id="name"><br><br>
+
+    <label>Email:</label><br>
+    <input type="text" name="email" id="email"><br><br>
+
+    <label>Mobile Number:</label><br>
+    <input type="text" name="mobile" id="mobile"><br><br>
+
+    <label>Password:</label><br>
+    <input type="password" name="password" id="password"><br><br>
+
+    <label>Confirm Password:</label><br>
+    <input type="password" name="confirm_password" id="confirm_password"><br><br>
+
+    <input type="submit" value="Signup">
+  </form>
+
+  <script>
+    $("#signupForm").submit(function(e) {
+      e.preventDefault();
+
+      let name = $("#name").val().trim();
+      let email = $("#email").val().trim();
+      let mobile = $("#mobile").val().trim();
+      let password = $("#password").val();
+      let confirmPassword = $("#confirm_password").val();
+
+      if (!name || !email || !mobile || !password || !confirmPassword) {
+        alert("All fields are required!");
+        return;
+      }
+
+      let emailRegex = /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
+      if (!emailRegex.test(email)) {
+        alert("Invalid email format.");
+        return;
+      }
+
+      let mobileRegex = /^[6-9]\d{9}$/;
+      if (!mobileRegex.test(mobile)) {
+        alert("Invalid mobile number.");
+        return;
+      }
+
+      let passRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+      if (!passRegex.test(password)) {
+        alert("Password must be at least 6 characters with letters and numbers.");
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        alert("Passwords do not match.");
+        return;
+      }
+
+      this.submit(); // Submit if all checks pass
+    });
+  </script>
+</body>
+</html>
